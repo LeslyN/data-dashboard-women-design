@@ -131,10 +131,10 @@ window.addEventListener('load', function() {
 
   
   function achievement(branch, generation) {    
-    var goldensStudents = document.querySelector('.golden-students');
-    goldensStudents.textContent = goldenStudents(branch, generation);
-    var percentageGoldenStudents = document.querySelector('.percentage-golden');
-    percentageGoldenStudents.textContent = percentageGoldenStudents;
+    var goldenStudentsParagraph = document.querySelector('.golden-students');
+    goldenStudentsParagraph.textContent = goldenStudents(branch, generation);
+    var percentageGoldenStudentsParagraph = document.querySelector('.percentage-golden');
+    percentageGoldenStudentsParagraph.textContent = percentageGoldenStudents(branch, generation) ;
   };
  
   function goldenStudents(branch, generation) {
@@ -144,7 +144,9 @@ window.addEventListener('load', function() {
     var arrTech = [];
     var acumHse = 0;
     var acumTech = 0;
-    var goldenStudent = 0;
+    var golden = 0;
+
+
     for (var i = 0; i < students.length; i++) {
       for (var j = 0; j < quantitySprints; j++) { 
         var pointsHse = students[i]['sprints'][j]['score']['hse'];
@@ -156,18 +158,35 @@ window.addEventListener('load', function() {
       arrTech.push(acumTech / quantitySprints);
       for (var k = 0; k < arrHse.length; k++) {
         if (arrHse[k] >= 840 && arrTech[k] >= 1260) {
-          goldenStudent++;
+          golden++;
         }  
       }
-      return goldenStudent;
+      return golden;
     }
   };
+  function percentageGoldenStudents(branch, generation) {
+    var students = data[branch][generation]['students'].length;
+    var percentageGoldenStudent = (((goldenStudents(branch, generation)) * 100) / students).toFixed(1);
+    return percentageGoldenStudent;
+  }
 
-
-
-
-  
   function nps(branch, generation) {
+    var netPromoter = document.querySelector('.net-promoter-score');
+    netPromoter.textContent = averageNet(branch, generation);
+  }
 
+  function averageNet(branch, generation) {
+    var ratings = data[branch][generation]['ratings'];
+    var sumSprints = 0;
+
+    for (var i = 0; i < ratings.length; i++) {
+      var sprintPromoters = ratings[i]['nps']['promoters'];
+      var sprintDetractors = ratings[i]['nps']['detractors'];
+      var sprintPassive = ratings[i]['nps']['passive'];
+      var netps = sprintPromoters - sprintDetractors;
+      sumSprints += netps;
+      var averageNps = sumSprints / ratings.length;
+    }
+    return averageNps;
   }
 });
