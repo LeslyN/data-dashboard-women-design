@@ -21,11 +21,10 @@
     </header>
     <section class="container">
       <div class="menu">
-          <nav>
+        <nav>
           <ul class="acorh">
             <li>
-              <a href="#">
-                <span class="icon-home"></span> Start</a>
+              <a href="#"><span class="icon-home"></span> Start</a>
             </li>
             <li class="submenu">
               <a href="#">
@@ -46,7 +45,6 @@
                             <span class="year"></span>
                           </a>
                         </li>
-  
                       </ul>
                     </li>
                     <li class="submenu3">
@@ -54,7 +52,6 @@
                         <span class="year"></span>
                       </a>
                       <ul class="children3">
-  
                         <li id="dataA_2016II">
                           <a href="#">2016 - II
                             <span class="year"></span>
@@ -64,7 +61,6 @@
                     </li>
                   </ul>
                 </li>
-
                 <li class="submenu2">
                   <a href="#"><span class="icon-stats-dots"></span> México</a>
                   <ul class="children2">
@@ -87,7 +83,6 @@
                     </li>
                   </ul>
                 </li>
-
                 <li class="submenu2">
                   <a href="#"> <span class="icon-stats-dots"></span> Lima</a>
                   <ul class="children2">
@@ -108,7 +103,6 @@
                         </li>
                       </ul>
                     </li>
-
                     <li class="submenu3">
                       <a href="#">2016
                         <span class="year"></span>
@@ -123,7 +117,6 @@
                     </li>
                   </ul>
                 </li>
-
                 <li class="submenu2">
                   <a href="#"><span class="icon-stats-dots"></span> Chile</a>
                   <ul class="children2">
@@ -144,7 +137,6 @@
                         </li>
                       </ul>
                     </li>
-
                     <li class="submenu3">
                       <a href="#">2016
                         <span class="year"></span>
@@ -164,6 +156,7 @@
       </div>
     </section>
 
+
     <section class="container-tabs">
       <ul>
         <li><button type="button" name="button" data-selected-tab="tabOverView" class="tab" id="#btnoverview">Overview</button></li>
@@ -176,124 +169,119 @@
       <div class="">
         <article id="overview">
           <section class="container-one">
-            <section class="enrollment box-medium-size">
-              <h1 class="text-uppercase">Enrollment</h1>
-                <div class="figures" id="student-currently">
-                  <p></p>
-                  <p class="text-uppercase"># students currently enrolled</p>
-                </div>
-                <div class="figures" id="student-dropount">
-                  <p></p>
-                  <p class="text-uppercase">% dropout</p>
-                </div>
+              <section class="enrollment box-medium-size">
+                <h1 class="text-uppercase">Enrollment</h1>
+                  <div class="figures" id="student-currently">
+                    <p></p>
+                    <p class="text-uppercase"># students currently enrolled</p>
+                  </div>
+                  <div class="figures" id="student-dropount">
+                    <p></p>
+                    <p class="text-uppercase">% dropout</p>
+                  </div>
+      </section>
+
+      <section class="achievement box-medium-size">
+        <h1 class="text-uppercase">Achievement</h1>
+          <div class="figures" id="achievement-student">
+            <p></p>
+            <p class="text-uppercase"># students that meet the target</p>
+          </div>
+          <div class="figures">
+            <p class="text-uppercase">% of total ()</p>
+          </div>
+      </section>
+
+      <section class="promoter-score box-medium-size">
+        <h1 class="text-uppercase">Net Promoter Score</h1>
+          <div class="figures" id="net-promoter-score">
+            <p></p>
+            <p class="text-uppercase">% cumulative nps</p>
+          </div>
+          <div class="figures" id="detalle-net-promoter-score">
+            <p></p>
+            <!-- 3 porcentajes que provienen de data y DOM -->
+          </div>
+      </section>
     </section>
 
-    <section class="achievement box-medium-size">
-      <h1 class="text-uppercase">Achievement</h1>
-        <div class="figures" id="achievement-student">
-          <p></p>
-          <p class="text-uppercase"># students that meet the target</p>
-        </div>
-        <div class="figures">
-          <p class="text-uppercase">% of total ()</p>
-        </div>
-    </section>
-
-    <section class="promoter-score box-medium-size">
-      <h1 class="text-uppercase">Net Promoter Score</h1>
-        <div class="figures" id="net-promoter-score">
-          <p></p>
-          <p class="text-uppercase">% cumulative nps</p>
-        </div>
-        <div class="figures" id="detalle-net-promoter-score">
-          <p></p>
-          <!-- 3 porcentajes que provienen de data y DOM -->
-        </div>
-    </section>
-  </section>
-
-    <section class="tech-skills box-size">
-      <h1 class="text-uppercase">Tech Skills
-        <select class="sprint" name="">
-          <option value="">Escoja sprint</option>
-          <option value="sprint-1">Sprint - 1</option>
-          <option value="sprint-2">Sprint - 2</option>
-          <option value="sprint-3">Sprint - 3</option>
+        <section class="tech-skills box-size">
+          <h1 class="text-uppercase">Tech Skills
+            <select class="sprint" name="">
+              <option value="">Escoja sprint</option>
+              <option value="sprint-1">Sprint - 1</option>
+              <option value="sprint-2">Sprint - 2</option>
+              <option value="sprint-3">Sprint - 3</option>
+            </select>
+          </h1>
+          <div class="figures" id="techSkillsTech">    
+            <p></p>
+              <p class="text-uppercase"># students that meet the target</p>
+          </div>
+          <div class="figures" >
+            <p></p>
+            <p class="text-uppercase">% of total ()</p>
+          </div>
+        </section>
+        <section class="life-skills box-size">
+          <h1 class="text-uppercase">Life Skills
+            <select class="sprint" name="">
+              <option value="">Escoja sprint</option>
+              <option value="sprint-1">Sprint - 1</option>
+              <option value="sprint-2">Sprint - 2</option>
+              <option value="sprint-3">Sprint - 3</option>
         </select>
-      </h1>
-        <div class="figures" id="techSkillsTech">
-          
-        <p></p>
-          <p class="text-uppercase"># students that meet the target</p>
-        </div>
-        <div class="figures" >
-          <p></p>
-
-          <p class="text-uppercase">% of total ()</p>
-        </div>
-    </section>
-    <section class="life-skills box-size">
-      <h1 class="text-uppercase">Life Skills
-        <select class="sprint" name="">
-          <option value="">Escoja sprint</option>
-          <option value="sprint-1">Sprint - 1</option>
-          <option value="sprint-2">Sprint - 2</option>
-          <option value="sprint-3">Sprint - 3</option>
-        </select>
-      </h1>
+        </h1>
         <div class="figures" id="techSkillsLife">
-
-        <p></p>
+          <p></p>
           <p class="text-uppercase">overall call average</p>
         </div>
         <div class="figures">
           <p class="text-uppercase"># of students that meet the target</p>
+        </div>        
+      </section>
+      <section class="container-one">
+        <section class="student-satisfaction box-medium-size">
+          <h1 class="text-uppercase">Student satisfaction</h1>
+          <div class="figures" id="satisfaction">
+            <p></p>
+            <p class="text-uppercase">% meeting or exceeding expectations (cumulative)</p>
+          </div>
+        </section>
+        <section class="teacher-rating box-medium-size">
+          <h1 class="text-uppercase">Teacher Rating</h1>
+          <div class="figures">
+            <p class="text-uppercase">overall teacher rating (cumulative)</p>
+          </div>
+        </section>
+        <section class="jedi-rating box-medium-size">
+          <h1 class="text-uppercase">Jedi Master Rating</h1>
+          <div class="figures">
+            <p class="text-uppercase">overall jedi rating (cumulative)</p>
+          </div>
+        </section>
+      </section>
+    </article>
+    <article id="students" class="display-none">
+      <div class="students-info">
+        <figure>
+          <img src="" alt="coder-picture">
+        </figure>
+        <h1 class="name">Nombre</h1>
+        <div class="figures">
+          <p class="text-uppercase">tech skills</p>
         </div>
-    </section>
-    <section class="container-one">
-    <section class="student-satisfaction box-medium-size">
-      <h1 class="text-uppercase">Student satisfaction</h1>
-        <div class="figures" id="satisfaction">
-          <p></p>
-          <p class="text-uppercase">% meeting or exceeding expectations (cumulative)</p>
+        <div class="figures">
+          <p class="text-uppercase">life skills</p>
         </div>
+      </div>
+    </article>
+      <article id="teachers" class="display-none">
 
-    </section>
-    <section class="teacher-rating box-medium-size">
-      <h1 class="text-uppercase">Teacher Rating</h1>
-        <div class="figures">
-          <p class="text-uppercase">overall teacher rating (cumulative)</p>
-        </div>
-    </section>
-    <section class="jedi-rating box-medium-size">
-      <h1 class="text-uppercase">Jedi Master Rating</h1>
-        <div class="figures">
-          <p class="text-uppercase">overall jedi rating (cumulative)</p>
-        </div>
-    </section>
-  </section>
-  </article>
-  <article id="students" class="display-none">
-    <div class="students-info">
-      <figure>
-        <img src="" alt="coder-picture">
-      </figure>
-      <h1 class="name">Nombre</h1>
-      <div class="figures">
-        <p class="text-uppercase">tech skills</p>
-      </div>
-      <div class="figures">
-        <p class="text-uppercase">life skills</p>
-      </div>
+      </article>
 
     </div>
-  </article>
-  <article id="teachers" class="display-none">
-
-  </article>
-
-  </div>
-  </section>
+    </section>
 
 
 		<!-- Base de datos -->
