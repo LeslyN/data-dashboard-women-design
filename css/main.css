@@ -236,10 +236,11 @@ outline: none;
         }
 ul.acorh,
 ul.acorh * {
-margin: 0;
-padding: 0;
-border: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
+
 ul.acorh {
 margin: 0 auto;
 padding: 0;
