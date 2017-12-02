@@ -30,7 +30,7 @@ header {
 .box1 {
   display: inline-block;
   height: 10vh;
-  float:left;
+  float: left;
   width: 16vw;
   margin: 0px;
 }
@@ -85,3 +85,206 @@ img {
 }
 
 /*-------MENU DESPLEGABLE------------------*/
+
+
+
+
+/*----*/
+
+.container-one {
+  display: flex;
+  align-items: center;
+}
+
+.box-medium-size {
+  border: 1px solid #ffc107;
+  box-sizing: border-box;
+  width: 35vw;
+  height: auto;
+  background-color: #ffffff;
+  font-size: 14px;
+  margin: 5px;
+  padding: 3vh;
+}
+
+.box-medium-size .figures {
+  border: 1px solid #000;
+  box-sizing: border-box;
+  width: 10vw;
+  height: auto;
+  margin: 3px;
+  padding: 2vh;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.box-medium-size .figures p {
+  font-size: 10px;
+}
+
+.box-size {
+  border: 1px solid #ffc107;
+  box-sizing: border-box;
+  width: 78vw;
+  height: auto;
+  background-color: #ffffff;
+  display: inline-flex;
+  margin: 5px;
+  font-size: 14px;
+  padding: 4vh;
+}
+
+.box-size .figures {
+  border: 1px solid #000;
+  box-sizing: border-box;
+  width: 10vw;
+  height: auto;
+  margin: 3px;
+  padding: 2vh;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.box-size h1 {
+  display: block;
+}
+
+.box-size .figures p {
+  font-size: 10px;
+}
+
+#students figure img {
+  width: 2vw;
+  height: 10vh;
+}
+
+#students figcaption, #students .figures {
+  display: inline-block;
+}
+
+#students .figures {
+  width: 5vw;
+  height: 5vh;
+}
+
+nav {
+  width: 20vw;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+/*Tab*/
+#students {
+  width: 76vw;
+  height: 20vh;
+  /*border: 1px solid red;*/
+  /*margin-left: 2vw;*/
+}
+
+.students-info {
+  border: 1px solid #ffc107;
+  width: 60vw;
+  margin-left: 8vw;
+  text-align: center;
+}
+
+.students-info figure, .name, .students-info .figures {
+  vertical-align: top;
+  display: inline-block;
+  margin: 3vh;
+  padding: 0 3vh;
+}
+
+.menu-tab {
+  border: 2px solid #000;
+  padding: 0.5%;
+  width: 2%;
+  font-weight: bold;
+  float: left;
+  
+}
+
+.display-none {
+  display: none;
+}
+
+.container-tabs ul {
+  text-align: center;
+  padding: 2vh;
+  
+}
+
+.container-tabs li {
+display: inline-block;
+margin-right: 0.5vw;
+}
+
+.container-tabs li button {
+border-style: none;
+padding: 3vh;
+outline: none;
+
+}
+
+.menu{
+  width: 20%;
+  float: left;
+  height: 100vh;
+  background: #333;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+        }
+ul.acorh,
+ul.acorh * {
+margin: 0;
+padding: 0;
+border: 0;
+}
+ul.acorh {
+margin: 0 auto;
+padding: 0;
+list-style: none;
+width: 100%;
+font-size: 18px;
+}
+ul.acorh li {
+list-style: none;
+}
+ul.acorh li a {
+display: block;
+padding: 10px 10px 10px 20px;
+background: #ffc107;
+color: black;
+border-bottom: 1px solid #000;
+border-top: 1px solid #666;
+text-decoration: none;
+box-sizing: border-box;
+}
+ul.acorh li ul {
+max-height: 0;
+margin: 0;
+padding: 0;
+list-style: none;
+overflow: hidden;
+transition: .9s all ease-in;
+}
+ul.acorh li li a {
+padding: 10px 10px 10px 40px;
+background: #999;
+color: #000;
+font-size: 16px;
+border: 0;
+border-bottom: 1px solid #ccc;
+box-sizing: border-box;
+}
+ul.acorh li li:last-child a {
+border-bottom: 0;
+}
+ul.acorh li:hover ul {
+max-height: 1000px;
+transition: .9s all ease-in;
+}
+ul.acorh li a:hover {
+background: #ffd044;
+color: black;
+}
