@@ -1,0 +1,87 @@
+/* ............................GENERALES................................*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  /*outline: 1px solid green;*/
+}
+
+body {
+  background-color:lightgray;
+}
+
+header {
+  text-align: center;
+  height: 12vh;
+  width: 99.9%;
+  background-color: white;
+}
+
+/* ...............................HEADER.................................*/
+.box2 {
+  display: inline-block;
+  height: 12vh;
+  float: right;
+  width: 24vw;
+  font-weight: 600;
+}
+
+.box1 {
+  display: inline-block;
+  height: 10vh;
+  float:left;
+  width: 16vw;
+  margin: 0px;
+}
+
+.box1 span {
+  text-align: center;
+  font-family: 'Arimo', sans-serif;
+  letter-spacing: 4px;
+  margin-top: 0px;
+  margin-left: -40px;
+  font-size: 10px;
+  position: absolute;
+}
+
+header div img {
+  height: 80px;
+  width: 18vw;
+}
+
+img {
+  line-height: 2px;
+  margin-top: 0px;
+}
+
+.fotis {
+  margin-top: 0px;
+  display: inline-block;
+  position: relative;
+  height: 12vh;
+  width: 8vw;
+  border-radius: 30px;
+  opacity: 100;
+}
+.fotis:hover {
+  opacity: .70;
+}
+
+.saludo {
+  margin-top: 25px;
+  margin-left: 0px;
+  margin-bottom: 50px;
+  margin-right: 100px;
+  display: inline-block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  float: right;
+  letter-spacing: 1px;
+}
+
+.saludo:hover {
+  color: #ffc107
+}
+
+/*-------MENU DESPLEGABLE------------------*/
