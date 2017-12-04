@@ -34,7 +34,8 @@ window.addEventListener('load', function() {
   for (var i = 0;i < tabs.length;i++) {
     tabs[i].addEventListener('click', showTab);
   }
-
+  var sedeGeneral;
+  var generation;
   /* Sedes y Generación */
   // Arequipa
   var dataA2017I = document.getElementById('dataA_2017I');
@@ -53,33 +54,53 @@ window.addEventListener('load', function() {
 
   dataA2017I.addEventListener('click', function() {
     resultSede('AQP', '2017-1');
+    generation = '2017-1';
+    sedeGeneral = 'AQP';
   });
   dataA2016II.addEventListener('click', function() {
     resultSede('AQP', '2016-2');
+    generation = '2016-2';
+    sedeGeneral = 'AQP';
   });
   dataM2017I.addEventListener('click', function() {
     resultSede('CDMX', '2017-1');
+    generation = '2017-1';
+    sedeGeneral = 'CDMX';
   });
   dataM2017II.addEventListener('click', function() {
     resultSede('CDMX', '2017-2');
+    generation = '2017-2';
+    sedeGeneral = 'CDMX';
   });
   dataL2017I.addEventListener('click', function() {
     resultSede('LIM', '2017-1');
+    generation = '2017-1';
+    sedeGeneral = 'LIM';
   });
   dataL2017II.addEventListener('click', function() {
     resultSede('LIM', '2017-2');
+    generation = '2017-2';
+    sedeGeneral = 'LIM';
   });
   dataL2016II.addEventListener('click', function() {
     resultSede('LIM', '2016-2');
+    generation = '2016-2';
+    sedeGeneral = 'LIM';
   });
   dataC2017I.addEventListener('click', function() {
     resultSede('SCL', '2017-1');
+    generation = '2017-1';
+    sedeGeneral = 'SCL';
   });
   dataC2017II.addEventListener('click', function() {
     resultSede('SCL', '2017-2');
+    generation = '2017-2';
+    sedeGeneral = 'SCL';
   });
   dataC2016II.addEventListener('click', function() {
     resultSede('SCL', '2016-2');
+    generation = '2016-2';
+    sedeGeneral = 'SCL';
   });
 
 
@@ -94,7 +115,6 @@ window.addEventListener('load', function() {
   function enrollment(branch, generation) {
     var boxStudentsActive = document.querySelector('.students-active');
     var percentageDropout = document.querySelector('.percentage-dropout'); 
-    
     
     var totalStudents = data[branch][generation]['students'].length; // 15
     
@@ -130,43 +150,48 @@ window.addEventListener('load', function() {
   };
 
   
-  function achievement(branch, generation) {    
+  // Función para crear y añadir el # y % de estudiantes que superan la meta de puntos en promedio de todos los sprints cursado
+  function achievement(branch, generation) {
     var goldenStudentsParagraph = document.querySelector('.golden-students');
-    goldenStudentsParagraph.textContent = goldenStudents(branch, generation);
+    // Crea y agrega el # de estudiantes que superan la meta en HSE y Tech
+    goldenStudentsParagraph.textContent = studentAchievement(branch, generation);
     var percentageGoldenStudentsParagraph = document.querySelector('.percentage-golden');
+    // Crea y agrega el % de estudiantes que superan la meta en HSE y Tech
     percentageGoldenStudentsParagraph.textContent = percentageGoldenStudents(branch, generation) ;
   };
- 
-  function goldenStudents(branch, generation) {
+
+  // Función para calcular el # de estudiantes que superan la meta de 70% de puntos en HSE y Tech
+  function studentAchievement(branch, generation) {
     var students = data[branch][generation]['students'];
-    var quantitySprints = data[branch][generation]['students'][0]['sprints'].length;
-    var arrHse = [];
-    var arrTech = [];
-    var acumHse = 0;
-    var acumTech = 0;
-    var golden = 0;
+    var allScoresAverageArr = [];
 
-
-    for (var i = 0; i < students.length; i++) {
-      for (var j = 0; j < quantitySprints; j++) { 
-        var pointsHse = students[i]['sprints'][j]['score']['hse'];
-        var pointsTech = students[i]['sprints'][j]['score']['tech'];
-        acumHse += pointsHse;
-        acumTech += pointsTech;      
+    for (i = 0; i < students.length; i++) {
+      var sumTechScores = 0;
+      var sumHseScores = 0;
+      if (students[i].active) {
+        var numSprint = students[i].sprints.length;
+        for (j = 0; j < numSprint; j++) {
+          var pointsTech = students[i].sprints[j].score.tech;
+          var pointsHSE = students[i].sprints[j].score.hse;
+          sumTechScores += pointsTech;
+          sumHseScores += pointsHSE;
+        }
+        var averageTech = sumTechScores / numSprint;
+        var averageHSE = sumHseScores / numSprint;
+        allScoresAverageArr.push([averageTech, averageHSE]);
       }
-      arrHse.push(acumHse / quantitySprints);
-      arrTech.push(acumTech / quantitySprints);
-      for (var k = 0; k < arrHse.length; k++) {
-        if (arrHse[k] >= 840 && arrTech[k] >= 1260) {
-          golden++;
-        }  
-      }
-      return golden;
     }
-  };
+    var studentsReachingGoal = 0;
+    for (k = 0; k < allScoresAverageArr.length; k++) {
+      if (allScoresAverageArr[k][0] >= 1260 && allScoresAverageArr[k][1] >= 840) {
+        studentsReachingGoal ++;
+      }
+    }
+    return studentsReachingGoal;
+  }
+
   function percentageGoldenStudents(branch, generation) {
-    var students = data[branch][generation]['students'].length;
-    var percentageGoldenStudent = (((goldenStudents(branch, generation)) * 100) / students).toFixed(1);
+    var percentageGoldenStudent = ((studentAchievement(branch, generation) / active(branch, generation)) * 100).toFixed(1);
     return percentageGoldenStudent;
   }
 
@@ -188,5 +213,122 @@ window.addEventListener('load', function() {
       var averageNps = sumSprints / ratings.length;
     }
     return averageNps;
+  }
+
+  /* Cantidad y porcentaje Tech */
+  function techSkills(branch, generation) {
+    var students = data[branch][generation]['students'];
+    var totalTechArray = [];
+    var countTechSp1 = 0, countTechSp2 = 0, countTechSp3 = 0, countTechSp4 = 0;
+
+    for (var i = 0; i < students.length; i++) {
+      var quantitySprints = students[i].sprints.length;
+      if (students[i].active === true) {
+        for (var j = 0; j < quantitySprints; j++) {
+          if (students[i].sprints[j].number === 1) {
+            var techScoreSp1 = students[i].sprints[j].score.tech;
+            if (techScoreSp1 >= 1260) {
+              countTechSp1++;
+            }
+          } else if (students[i].sprints[j].number === 2) {
+            var techScoreSp2 = students[i].sprints[j].score.tech;
+            if (techScoreSp2 >= 1260) {
+              countTechSp2++;
+            }
+          } else if (students[i].sprints[j].number === 3) {
+            var techScoreSp3 = students[i].sprints[j].score.tech;
+            if (techScoreSp3 >= 1260) {
+              countTechSp3++;
+            }
+          } else if (students[i].sprints[j].number === 4) {
+            var techScoreSp4 = students[i].sprints[j].score.tech;
+            if (techScoreSp4 >= 1260) {
+              countTechSp4++;
+            }
+          }
+        }
+      }
+    }
+    totalTechArray.push(countTechSp1, countTechSp2, countTechSp3, countTechSp4);
+    return totalTechArray;
+  }
+  
+  var select = document.querySelector('.sprint');
+  var tech = document.querySelector('.tech');
+  select.addEventListener('change', function() {
+    var sprint1 = document.querySelector('.sprint-1-t');
+    var sprint2 = document.querySelector('.sprint-2-t');
+    var sprint3 = document.querySelector('.sprint-3-t');
+    if (sprint1.value == 'sprint-1-t') {
+      tech.textContent = techSkills(branch, generation)[0];
+    }
+    if (sprint2.value == 'sprint-2-t') {
+      tech.textContent = techSkills(branch, generation)[1];
+    }
+    if (sprint3.value == 'sprint-3-t') {
+      tech.textContent = techSkills(branch, generation)[2];
+    }
+  });
+
+  /* La cantidad y el porcentaje que representa el total de estudiantes 
+   que superan la meta de puntos de HSE en promedio y por sprint. */
+  function showHseSkill(branch, generation) {
+    var hseStudents = document.querySelector('.skill-students');
+    hseStudents.textContent = hseSkills(branch, generation);
+    var percentageHseStudents = document.querySelector('.percentage-skill-students');
+    percentageHseStudents.textContent = percentageHseSkills(branch, generation);
+  }
+
+  /* Total de estudiantes superan meta puntos hse - promedio y sprint */
+  function hseSkills(branch, generation, sprint) {
+    var students = data[branch][generation]['students'];
+    var totalStudentsActive = 0;
+    var totalStudentSprint = 0;
+    for (var i = 0; i < students.length; i++) {
+      var quantitySprints = students[i]['sprints'];
+      if (students[i].active) {
+        for (var j = 0; j < quantitySprints.length; j++) {
+          if (quantitySprints[j]['number'] === sprint && quantitySprints[j]['score']['hse'] >= 840) {
+            totalStudentSprint++;
+          }
+        }
+      }
+    }
+    return totalStudentSprint;
+  }
+  
+  function percentageHseSkills(branch, generation, sprint) {
+    var totalStudentActive = active(branch, generation);
+    var totalHseSprint = hseSkills(branch, generation, sprint);
+    var percentage = ((totalHseSprint / totalStudentActive) * 100).toFixed(1);
+    return percentage;
+  }
+
+  var sprintHseSkills = document.querySelector('.sprint-hse-skills');
+  sprintHseSkills.addEventListener('change', showHseSprint);
+  
+  function showHseSprint(event) {
+    var selectSprint = event.target.value;
+    switch (true) {
+    case selectSprint === '1':
+      document.querySelector('#skill-student').textContent = hseSkills(sedeGeneral, generation, 1);
+      percentageHseSkills(sedeGeneral, generation, 1);
+      break;
+    case selectSprint === '2':
+      document.querySelector('#skill-student').textContent = hseSkills(sedeGeneral, generation, 2);
+      percentageHseSkills(sedeGeneral, generation, 2);
+      break;
+    case selectSprint === '3':
+      document.querySelector('#skill-student').textContent = hseSkills(sedeGeneral, generation, 3);
+      percentageHseSkills(sedeGeneral, generation, 3);
+      break;
+    case selectSprint === '4':
+      document.querySelector('#skill-student').textContent = hseSkills(sedeGeneral, generation, 4);
+      percentageHseSkills(sedeGeneral, generation, 4);
+      break;
+    }
+    // sedeGeneral = '';
+    // generation = '';
+    // return selectSprint;
   }
 });
