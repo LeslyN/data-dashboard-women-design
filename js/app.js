@@ -88,6 +88,11 @@ window.addEventListener('load', function() {
     enrollment(branch, generation);
     achievement(branch, generation);
     nps(branch, generation);
+    jediMasterRating(branch, generation); // Lorena
+    teacherRating(branch, generation); // Claudia
+    satisfaction(branch, generation); // Eleyne
+
+
     studentFilter(branch, generation);
   };
   /* funciones*/
@@ -130,50 +135,63 @@ window.addEventListener('load', function() {
     return inactive;
   };
 
-  
-  function achievement(branch, generation) {    
+  // LIzbeth
+  // Función para crear y añadir el # y % de estudiantes que superan la meta de puntos en promedio de todos los sprints cursado
+  function achievement(branch, generation) {
+    // Crea y agrega el # de estudiantes que superan la meta en HSE y Tech
     var goldenStudentsParagraph = document.querySelector('.golden-students');
-    goldenStudentsParagraph.textContent = goldenStudents(branch, generation);
+    goldenStudentsParagraph.textContent = studentAchievement(branch, generation);
+    // Crea y agrega el % de estudiantes que superan la meta en HSE y Tech
     var percentageGoldenStudentsParagraph = document.querySelector('.percentage-golden');
     percentageGoldenStudentsParagraph.textContent = percentageGoldenStudents(branch, generation) ;
   };
- 
-  function goldenStudents(branch, generation) {
+
+  // Función para calcular el # de estudiantes que superan la meta de 70% de puntos en HSE y Tech
+  function studentAchievement(branch, generation) {
     var students = data[branch][generation]['students'];
-    var quantitySprints = data[branch][generation]['students'][0]['sprints'].length;
-    var arrHse = [];
-    var arrTech = [];
-    var acumHse = 0;
-    var acumTech = 0;
-    var golden = 0;
+    var allScoresAverageArr = [];
 
-
-    for (var i = 0; i < students.length; i++) {
-      for (var j = 0; j < quantitySprints; j++) { 
-        var pointsHse = students[i]['sprints'][j]['score']['hse'];
-        var pointsTech = students[i]['sprints'][j]['score']['tech'];
-        acumHse += pointsHse;
-        acumTech += pointsTech;      
+    for (i = 0; i < students.length; i++) {
+      var sumTechScores = 0;
+      var sumHseScores = 0;
+      if (students[i].active === true) {
+        var numSprint = students[i].sprints.length;
+        for (j = 0; j < numSprint; j++) {
+          var pointsTech = students[i].sprints[j].score.tech;
+          var pointsHSE = students[i].sprints[j].score.hse;
+          sumTechScores += pointsTech;
+          sumHseScores += pointsHSE;
+        }
+        var averageTech = sumTechScores / numSprint;
+        var averageHSE = sumHseScores / numSprint;
+        allScoresAverageArr.push([averageTech, averageHSE]);
       }
-      arrHse.push(acumHse / quantitySprints);
-      arrTech.push(acumTech / quantitySprints);
-      for (k = 0; k < arrHse.length; k++) {
-        if (arrHse[k] >= 840 && arrTech[k] >= 1260) {
-          golden++;
-        }  
-      }
-      return golden;
     }
-  };
+    var studentsReachingGoal = 0;
+    for (k = 0 ; k < allScoresAverageArr.length ;k++) {
+      if (allScoresAverageArr[k][0] >= 1260 && allScoresAverageArr[k][1] >= 840) {
+        studentsReachingGoal ++;
+      }
+    }
+    return studentsReachingGoal;
+  }
+
   function percentageGoldenStudents(branch, generation) {
-    var students = data[branch][generation]['students'].length;
-    var percentageGoldenStudent = (((goldenStudents(branch, generation)) * 100) / students).toFixed(1);
+    var percentageGoldenStudent = ((studentAchievement(branch, generation) / active(branch, generation)) * 100).toFixed(1);
     return percentageGoldenStudent;
   }
+  // FIn Lizbeth
 
   function nps(branch, generation) {
     var netPromoter = document.querySelector('.net-promoter-score');
-    netPromoter.textContent = (averageNet(branch, generation)).toFixed(1);
+    netPromoter.textContent = averageNet(branch, generation);
+
+    var averageSprintPromoters = document.querySelector('.average-promoters');
+    averageSprintPromoters.textContent = averagePromoters(branch, generation);
+    var averageSprintPassive = document.querySelector('.average-passive');
+    averageSprintPassive.textContent = averagePassive(branch, generation);
+    var averageSprintDetractors = document.querySelector('.average-detractors');
+    averageSprintDetractors.textContent = averageDetractors(branch, generation);
   }
 
   function averageNet(branch, generation) {
@@ -191,6 +209,103 @@ window.addEventListener('load', function() {
     return averageNps;
   }
 
+  function averagePromoters(branch, generation) {
+    var ratings = data[branch][generation]['ratings'];
+    var sumSprintPromoters = 0;
+    var sprintPromoters;
+
+    for (var i = 0; i < ratings.length; i++) {
+      sprintPromoters = ratings[i]['nps']['promoters'];
+      sumSprintPromoters += sprintPromoters;
+    }
+    var averageSprintPromoters = (sumSprintPromoters / (ratings.length)).toFixed(1);
+    return averageSprintPromoters;
+  };
+  function averagePassive(branch, generation) {
+    var ratings = data[branch][generation]['ratings'];
+    var sumSprintPassive = 0;
+
+    var sprintPassive;
+    
+    for (var i = 0; i < ratings.length; i++) {
+      sprintPassive = ratings[i]['nps']['passive'];
+      sumSprintPassive += sprintPassive;
+    }
+    var averageSprintPassive = (sumSprintPassive / (ratings.length)).toFixed(1);
+    return averageSprintPassive;
+  };
+  function averageDetractors(branch, generation) {
+    var ratings = data[branch][generation]['ratings'];
+    var sumSprintDetractors = 0;
+
+    var sprintDetractors;
+    
+    for (var i = 0; i < ratings.length; i++) {
+      sprintDetractors = ratings[i]['nps']['detractors'];
+      sumSprintDetractors += sprintDetractors;
+    }
+    var averageSprintDetractors = (sumSprintDetractors / (ratings.length)).toFixed(1);
+    return averageSprintDetractors;
+  };
+
+
+  /*  LORE */
+  function jediMasterRating(branch, generation) {
+    var boxJediRating = document.querySelector('.jedi-master-rating');
+
+    boxJediRating.textContent = jediMasterAverage(branch, generation);
+  }
+
+  function jediMasterAverage(branch, generation) {
+    var ratings = data[branch][generation]['ratings'];
+    var jediMasterTotalScore = 0;
+
+    for (var i = 0; i < ratings.length; i++) {
+      jediMasterTotalScore += ratings[i]['jedi'];
+    }
+    var average = jediMasterTotalScore / ratings.length;
+    return average.toFixed(1);
+  }
+  /* FIN LORE */
+
+  /** Claudia */
+  function teacherRating(branch, generation) {
+    var boxTeacherRating = document.querySelector('.teach-rat');
+    boxTeacherRating.textContent = teacherAverage(branch, generation);
+  }
+
+  function teacherAverage(branch, generation) {
+    var ratings = data[branch][generation]['ratings'];
+    var teacherTotalRating = 0;
+    for (var i = 0; i < ratings.length; i++) {
+      teacherTotalRating += ratings[i]['teacher'];
+    }
+    var teachAverage = teacherTotalRating / ratings.length;
+    return teachAverage.toFixed(1);
+  }
+
+  /** FIn claudia */
+
+  /** ELeyne */
+  function satisfaction(branch, generation) {
+    var boxSatisfaction = document.querySelector('.average');
+    boxSatisfaction.textContent = satisfactionStudent(branch, generation);
+  };
+  function satisfactionStudent(branch, generation) {
+    var ratings = data[branch][generation]['ratings'];
+    var totalSatisfaction = 0;
+    for (var i = 0; i < ratings.length;i++) {
+      var sprintLatest = data[branch][generation]['ratings'];
+      var meet = ratings[i]['student']['cumple'];
+      var beats = ratings[i]['student']['supera'];
+      var Satisf = meet + beats;
+      totalSatisfaction += Satisf;
+      var prom = (totalSatisfaction / (ratings.length)).toFixed(1);
+    };
+     
+    return prom;
+  };
+  /** FIn Eleyne */
   function studentFilter(branch, generation) {
     // Obtener la referencia del html
     var containerStudents = document.getElementById('container-students');

@@ -17,9 +17,13 @@
 
     <!--CABECERA-->
     <header>
-      <div class="box1"><img src="assets/images/logo-laboratoria.png" alt="logo-laboratoria"></div>
-      <div class="box2"><img class="image-user" src="assets/images/user.png" alt="fotis"><span class="saludo">Valeria <br> Schmidt</span></div>
+        <!--logo laboratoria-->
+        <div class="box1"><img src="assets/images/logo-laboratoria.png" alt="logo-laboratoria"></div>
+        <!--icono usuario, nombre de usuario-->
+        <div class="box2"><img class="image-user" src="assets/images/fotis.jpg" alt="fotis"><span class="saludo">Valeria <br> Schmidt</span></div>
     </header>
+    
+    <!--MENU DESPLEGABLE-->
     <section class="container">
       <div class="menu">
         <nav>
@@ -158,128 +162,207 @@
     </section>
 
 
-    <section class="container-tabs">
-      <ul>
-        <li><button type="button" name="button" data-selected-tab="tabOverView" class="tab" id="#btnoverview">Overview</button></li>
-        <li><button type="button" name="button" data-selected-tab="tabStudents" class="tab ">Students</button></li>
-        <li><button type="button" name="button" data-selected-tab="tabTeacher" class="tab ">Teachers</button></li>
-      </ul>
-    </section>
 
+    <!--BOTONES EN CABECERA SECUNDARIA-->
+    <section class="container-tabs">
+        <ul>
+            <!--boton general/overview-->
+            <li><button type="button" name="button" data-selected-tab="tabOverView" class="tab" id="#btnoverview">Overview</button></li>
+            <!--boton estudiantes/students-->
+            <li><button type="button" name="button" data-selected-tab="tabStudents" class="tab ">Students</button></li>
+            <!--boton profesores/teachers-->
+            <li><button type="button" name="button" data-selected-tab="tabTeacher" class="tab ">Teachers</button></li>
+        </ul>
+    </section>
+      
+
+    <!--CONTENIDO AL APRETAR CUALQUIERA DE LOS BOTONES DE LA CABECERA SECUNDARIA-->
     <section class="container-tabs-info">
       <div class="">
+
+        <!--AL APRETAR EL BOTON OVERVIEW-->
         <article id="overview">
+
+          <!--Contenedor 1: 3 contenedores secundarios (enrollment, achievement, promoted score)-->
           <section class="container-one">
 
+            <!--Enrollment-->
             <section class="enrollment box-medium-size">
-              <h1 class="text-uppercase">Enrollment</h1>
-                <div class="figures" id="student-currently">
-                  <p class ='students-active number'></p>
-                  <p class="text-uppercase"># students currently enrolled</p>
-                </div>
-                <div class="figures" id="student-dropount">
-                  <p class='percentage-dropout number'></p>
-                  <p class="text-uppercase">% dropout</p>
-                </div>
+              <h1 class="text-uppercase title">Enrollment</h1>
+              <!--box1-->
+              <div class="figures" id="student-currently">
+                <p class ='students-active number'></p>
+                <p class="text-uppercase"># students currently enrolled</p>
+              </div>
+              <!--box2-->
+              <div class="figures" id="student-dropount">
+                <p class='percentage-dropout number'></p>
+                <p class="text-uppercase">% dropout</p>
+              </div>
+              <canvas id='canvas-enrollment'></canvas>
+            </section>
 
-            </section>
+            <!--Achievement-->
             <section class="achievement box-medium-size">
-              <h1 class="text-uppercase">Achievement</h1>
-                <div class="figures" id="achievement-student">
-                  <p class="golden-students number"></p>
-                  <p class="text-uppercase"># students that meet the target</p>
-                </div>
-                <div class="figures">
-                  <p class="percentage-golden number"></p>
-                  <p class="text-uppercase">% of total ()</p>
-                </div>
+              <h1 class="text-uppercase title">Achievement</h1>
+              <!--box1-->
+              <div class="figures" id="achievement-student">
+                <p class="golden-students number"></p>
+                <p class="text-uppercase"># students that meet the target</p>
+              </div>
+              <!--box2-->
+              <div class="figures">
+                <p class="percentage-golden number"></p>
+                <p class="text-uppercase">% of total ()</p>
+              </div>
+              <canvas id='canvas-achievement'></canvas>
             </section>
+
+            <!--Net Promoter Score-->
             <section class="promoter-score box-medium-size">
-              <h1 class="text-uppercase">Net Promoter Score</h1>
-                <div class="figures" id="net-promoter-score">
-                  <p class="net-promoter-score number"></p>
-                  <p class="text-uppercase">% cumulative nps</p>
-                </div>
-                <div class="figures" id="detalle-net-promoter-score">
-                  <p></p>
-                  <!-- 3 porcentajes que provienen de data y DOM -->
-                </div>
+              <h1 class="text-uppercase title">Net Promoter Score</h1>
+              <!--box1-->
+              <div class="figures" id="net-promoter-score">
+                <p class="net-promoter-score number"></p>
+                <p class="text-uppercase">% cumulative nps</p>
+              </div>
+              <!--box2-->
+              <div class="figures" id="detalle-net-promoter-score">
+                <div><p class="average-promoters inline-block"></p><p class="inline-block">% Promoters</p></div>
+                <div><p class="average-passive inline-block"></p><p class="inline-block">% Passive</p></div>
+                <div><p class="average-detractors inline-block"></p><p class="inline-block">% Detractors</p></div>
+              </div>
+              <canvas id='canvas-nps'></canvas>
             </section>
+
           </section>
 
-            <section class="tech-skills box-size">
-              <h1 class="text-uppercase">Tech Skills</h1>
-                <div class="figures" id="techSkillsTech">
+          <!--Contenedor 2: 1 combo box con 3 sprints; 2 cajas (# y %)-->
+          <section class="tech-skills box-size">
 
-                <p class=""></p>
-                  <p class="text-uppercase"># students that meet the target</p>
-                </div>
-                <div class="figures">
-                  <p></p>
+            <h1 class="text-uppercase title">Tech Skills</h1>
 
-                  <p class="text-uppercase">% of total ()</p>
-                </div>
-                <select class="sprint" name="">
-                    <option value="">Escoja sprint</option>
-                    <option value="sprint-1">Sprint - 1</option>
-                    <option value="sprint-2">Sprint - 2</option>
-                    <option value="sprint-3">Sprint - 3</option>
-              </select>
+            <!--box1-->
+            <div class="figures" id="techSkillsTech">    
+              <p></p>
+                <p class="text-uppercase"># students that meet the target</p>
+            </div>
+            <!--box2-->
+            <div class="figures" >
+              <p></p>
+              <p class="text-uppercase">% of total ()</p>
+            </div>
+
+            <!--Combo Box Sprints(3)-->
+            <select class="sprint" name="">
+              <option value="">Escoja sprint</option>
+              <option value="sprint-1">Sprint - 1</option>
+              <option value="sprint-2">Sprint - 2</option>
+              <option value="sprint-3">Sprint - 3</option>
+            </select>
+
+            <canvas id='canvas-tech'></canvas>
+          
+          </section>
+
+          <!--Contenedor 3: 1 combo box con 3 sprints; 2 cajas (# y #)-->
+          <section class="life-skills box-size">
+            <h1 class="text-uppercase title">Life Skills</h1>
+
+            <!--box1-->
+            <div class="figures" id="techSkillsLife">
+              <p></p>
+              <p class="text-uppercase">overall call average</p>
+            </div>
+            <!--box2-->
+            <div class="figures">
+              <p class="text-uppercase"># of students that meet the target</p>
+            </div>  
+
+            <!--Combo Box Sprints(3)-->
+            <select class="sprint" name="">
+              <option value="">Escoja sprint</option>
+              <option value="sprint-1">Sprint - 1</option>
+              <option value="sprint-2">Sprint - 2</option>
+              <option value="sprint-3">Sprint - 3</option>
+            </select>
+            
+            <canvas id='canvas-life'></canvas>
+                  
+          </section>
+
+          <!--Contenedor 4: 3 contenedores secundarios (Student satisfaction, teacher rating, jedi master rating)-->
+          <section class="container-one">
+
+            <!--Student satisfaction-->
+            <section class="student-satisfaction box-medium-size">
+              <h1 class="text-uppercase title">Student satisfaction</h1>
+              <!--box1-->
+              <div class="figures" id="satisfaction">
+                <p class="average number"></p>
+                <p class="text-uppercase">% meeting or exceeding expectations (cumulative)</p>
+              </div>
+
+              <canvas id='canvas-satisfaction'></canvas>
             </section>
-            <section class="life-skills box-size">
 
-              <h1 class="text-uppercase">Life Skills</h1>
-              
-                <div class="figures" id="techSkillsLife">
-                    
-                <p></p>
-                  <p class="text-uppercase">overall call average</p>
-                </div>
-                <div class="figures">
-                  <p class="text-uppercase"># of students that meet the target</p>
-                </div>
-                <select class="sprint" name="">
-                    <option value="">Escoja sprint</option>
-                    <option value="sprint-1">Sprint - 1</option>
-                    <option value="sprint-2">Sprint - 2</option>
-                    <option value="sprint-3">Sprint - 3</option>
-              </select>
+            <!--Teacher rating-->
+            <section class="teacher-rating box-medium-size">
+              <h1 class="text-uppercase title">Teacher Rating</h1>
+              <!--box1-->
+              <div class="figures">
+                <p class="teach-rat number"></p>
+                <p class="text-uppercase">overall teacher rating (cumulative)</p>
+              </div>
+
+              <canvas id='canvas-teacher'></canvas>
+            </section>
+
+            <!--Jedi master rating-->
+            <section class="jedi-rating box-medium-size">
+              <h1 class="text-uppercase title">Jedi Master Rating</h1>
+              <!--box1-->
+              <div class="figures">
+                <p class="jedi-master-rating number"></p>
+                <p class="text-uppercase">overall jedi rating (cumulative)</p>
+              </div>
+              <canvas id='canvas-jedi'></canvas>
             </section>
             
-      <section class="container-one">
-        <section class="student-satisfaction box-medium-size">
-          <h1 class="text-uppercase">Student satisfaction</h1>
-          <div class="figures" id="satisfaction">
-            <p></p>
-            <p class="text-uppercase">% meeting or exceeding expectations (cumulative)</p>
+          </section>
+
+        </article>
+
+        <!--AL APRETAR EL BOTON STUDENTS-->
+        <article id="students" class="display-none">
+          
+          <!--contenedor de estudiante-->
+          <div class="students-info">
+            <!--imagen de la alumna-->
+            <figure>
+              <img src="" alt="coder-picture">
+            </figure>
+            <!--nombre de la alumna-->
+            <h1 class="name">Nombre</h1>
+            <!--box1-->
+            <div class="figures">
+              <p class="text-uppercase">tech skills</p>
+            </div>
+            <!--box2-->
+            <div class="figures">
+              <p class="text-uppercase">life skills</p>
+            </div>
           </div>
-        </section>
-        <section class="teacher-rating box-medium-size">
-          <h1 class="text-uppercase">Teacher Rating</h1>
-          <div class="figures">
-            <p class="text-uppercase">overall teacher rating (cumulative)</p>
-          </div>
-        </section>
-        <section class="jedi-rating box-medium-size">
-          <h1 class="text-uppercase">Jedi Master Rating</h1>
-          <div class="figures">
-            <p class="text-uppercase">overall jedi rating (cumulative)</p>
-          </div>
-        </section>
-      </section>
-    </article>
-    <article id="students" class="display-none">
-      <div id='container-students' >
+
+        </article>
+
+        <!--AL APRETAR EL BOTON TEACHERS-->
+        <article id="teachers" class="display-none">
+        </article>
 
       </div>
-                
-    </article>
-      <article id="teachers" class="display-none">
-
-      </article>
-
-    </div>
     </section>
+
 
 
 		<!-- Base de datos -->
