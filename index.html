@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit:600|Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
   </head>
 
@@ -17,7 +18,7 @@
     <!--CABECERA-->
     <header>
       <div class="box1"><img src="assets/images/logo-laboratoria.png" alt="logo-laboratoria"></div>
-      <div class="box2"><img class="fotis" src="assets/images/fotis.jpg" alt="fotis"><span class="saludo">Valeria <br> Schmidt</span></div>
+      <div class="box2"><img class="image-user" src="assets/images/user.png" alt="fotis"><span class="saludo">Valeria <br> Schmidt</span></div>
     </header>
     <section class="container">
       <div class="menu">
@@ -173,11 +174,11 @@
             <section class="enrollment box-medium-size">
               <h1 class="text-uppercase">Enrollment</h1>
                 <div class="figures" id="student-currently">
-                  <p class ='students-active'></p>
+                  <p class ='students-active number'></p>
                   <p class="text-uppercase"># students currently enrolled</p>
                 </div>
                 <div class="figures" id="student-dropount">
-                  <p class='percentage-dropout'></p>
+                  <p class='percentage-dropout number'></p>
                   <p class="text-uppercase">% dropout</p>
                 </div>
 
@@ -185,18 +186,18 @@
             <section class="achievement box-medium-size">
               <h1 class="text-uppercase">Achievement</h1>
                 <div class="figures" id="achievement-student">
-                  <p class="golden-students"></p>
+                  <p class="golden-students number"></p>
                   <p class="text-uppercase"># students that meet the target</p>
                 </div>
                 <div class="figures">
-                  <p class="percentage-golden"></p>
+                  <p class="percentage-golden number"></p>
                   <p class="text-uppercase">% of total ()</p>
                 </div>
             </section>
             <section class="promoter-score box-medium-size">
               <h1 class="text-uppercase">Net Promoter Score</h1>
                 <div class="figures" id="net-promoter-score">
-                  <p class="net-promoter-score"></p>
+                  <p class="net-promoter-score number"></p>
                   <p class="text-uppercase">% cumulative nps</p>
                 </div>
                 <div class="figures" id="detalle-net-promoter-score">
@@ -210,102 +211,41 @@
               <h1 class="text-uppercase">Tech Skills</h1>
                 <div class="figures" id="techSkillsTech">
 
-                <p></p>
+                <p class=""></p>
                   <p class="text-uppercase"># students that meet the target</p>
                 </div>
-                <div class="figures" >
+                <div class="figures">
                   <p></p>
 
                   <p class="text-uppercase">% of total ()</p>
                 </div>
+                <select class="sprint" name="">
+                    <option value="">Escoja sprint</option>
+                    <option value="sprint-1">Sprint - 1</option>
+                    <option value="sprint-2">Sprint - 2</option>
+                    <option value="sprint-3">Sprint - 3</option>
+              </select>
             </section>
             <section class="life-skills box-size">
-              <h1 class="text-uppercase">Life Skills</h1>
-                <div class="figures" id="techSkillsLife">
 
+              <h1 class="text-uppercase">Life Skills</h1>
+              
+                <div class="figures" id="techSkillsLife">
+                    
                 <p></p>
                   <p class="text-uppercase">overall call average</p>
                 </div>
                 <div class="figures">
                   <p class="text-uppercase"># of students that meet the target</p>
                 </div>
+                <select class="sprint" name="">
+                    <option value="">Escoja sprint</option>
+                    <option value="sprint-1">Sprint - 1</option>
+                    <option value="sprint-2">Sprint - 2</option>
+                    <option value="sprint-3">Sprint - 3</option>
+              </select>
             </section>
-            <section class="container-one">
-              <section class="student-satisfaction box-medium-size">
-                <h1 class="text-uppercase">Student satisfaction</h1>
-                  <div class="figures" id="satisfaction">
-              <section class="enrollment box-medium-size">
-                <h1 class="text-uppercase">Enrollment</h1>
-                  <div class="figures" id="student-currently">
-
-                    <p></p>
-                    <p class="text-uppercase"># students currently enrolled</p>
-                  </div>
-                  <div class="figures" id="student-dropount">
-                    <p></p>
-                    <p class="text-uppercase">% dropout</p>
-                  </div>
-      </section>
-
-      <section class="achievement box-medium-size">
-        <h1 class="text-uppercase">Achievement</h1>
-          <div class="figures" id="achievement-student">
-            <p></p>
-            <p class="text-uppercase"># students that meet the target</p>
-          </div>
-          <div class="figures">
-            <p class="text-uppercase">% of total ()</p>
-          </div>
-      </section>
-
-      <section class="promoter-score box-medium-size">
-        <h1 class="text-uppercase">Net Promoter Score</h1>
-          <div class="figures" id="net-promoter-score">
-            <p></p>
-            <p class="text-uppercase">% cumulative nps</p>
-          </div>
-          <div class="figures" id="detalle-net-promoter-score">
-            <p></p>
-            <!-- 3 porcentajes que provienen de data y DOM -->
-          </div>
-      </section>
-    </section>
-
-        <section class="tech-skills box-size">
-          <h1 class="text-uppercase">Tech Skills
-            <select class="sprint" name="">
-              <option value="">Escoja sprint</option>
-              <option value="sprint-1">Sprint - 1</option>
-              <option value="sprint-2">Sprint - 2</option>
-              <option value="sprint-3">Sprint - 3</option>
-            </select>
-          </h1>
-          <div class="figures" id="techSkillsTech">    
-            <p></p>
-              <p class="text-uppercase"># students that meet the target</p>
-          </div>
-          <div class="figures" >
-            <p></p>
-            <p class="text-uppercase">% of total ()</p>
-          </div>
-        </section>
-        <section class="life-skills box-size">
-          <h1 class="text-uppercase">Life Skills
-            <select class="sprint" name="">
-              <option value="">Escoja sprint</option>
-              <option value="sprint-1">Sprint - 1</option>
-              <option value="sprint-2">Sprint - 2</option>
-              <option value="sprint-3">Sprint - 3</option>
-        </select>
-        </h1>
-        <div class="figures" id="techSkillsLife">
-          <p></p>
-          <p class="text-uppercase">overall call average</p>
-        </div>
-        <div class="figures">
-          <p class="text-uppercase"># of students that meet the target</p>
-        </div>        
-      </section>
+            
       <section class="container-one">
         <section class="student-satisfaction box-medium-size">
           <h1 class="text-uppercase">Student satisfaction</h1>
@@ -329,18 +269,10 @@
       </section>
     </article>
     <article id="students" class="display-none">
-      <div class="students-info">
-        <figure>
-          <img src="" alt="coder-picture">
-        </figure>
-        <h1 class="name">Nombre</h1>
-        <div class="figures">
-          <p class="text-uppercase">tech skills</p>
-        </div>
-        <div class="figures">
-          <p class="text-uppercase">life skills</p>
-        </div>
+      <div id='container-students' >
+
       </div>
+                
     </article>
       <article id="teachers" class="display-none">
 

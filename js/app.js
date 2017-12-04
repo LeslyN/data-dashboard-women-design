@@ -88,6 +88,7 @@ window.addEventListener('load', function() {
     enrollment(branch, generation);
     achievement(branch, generation);
     nps(branch, generation);
+    studentFilter(branch, generation);
   };
   /* funciones*/
 
@@ -156,7 +157,7 @@ window.addEventListener('load', function() {
       }
       arrHse.push(acumHse / quantitySprints);
       arrTech.push(acumTech / quantitySprints);
-      for (var k = 0; k < arrHse.length; k++) {
+      for (k = 0; k < arrHse.length; k++) {
         if (arrHse[k] >= 840 && arrTech[k] >= 1260) {
           golden++;
         }  
@@ -172,7 +173,7 @@ window.addEventListener('load', function() {
 
   function nps(branch, generation) {
     var netPromoter = document.querySelector('.net-promoter-score');
-    netPromoter.textContent = averageNet(branch, generation);
+    netPromoter.textContent = (averageNet(branch, generation)).toFixed(1);
   }
 
   function averageNet(branch, generation) {
@@ -188,5 +189,91 @@ window.addEventListener('load', function() {
       var averageNps = sumSprints / ratings.length;
     }
     return averageNps;
+  }
+
+  function studentFilter(branch, generation) {
+    // Obtener la referencia del html
+    var containerStudents = document.getElementById('container-students');
+    // limpiar datos cargados
+    containerStudents.textContent = '';
+    // declarando variables    
+    var arrayPhoto = [];
+    var arrayName = [];
+    var arrayAverageTech = [];
+    var arrayAverageHse = [];
+    // obteniendo información de la base de datos
+    var students = data[branch][generation].students;
+    var arrHse = [];
+    var arrTech = [];
+    for (var i = 0; i < students.length; i++) {
+      if (students[i].active == true) {
+        var quantitySprints = data[branch][generation]['students'][i]['sprints'].length;
+        var acumHse = 0;
+        var acumTech = 0;
+        for (var j = 0; j < quantitySprints; j++) { 
+          var pointsHse = students[i]['sprints'][j]['score']['hse'];
+          var pointsTech = students[i]['sprints'][j]['score']['tech'];
+          acumHse += pointsHse;
+          acumTech += pointsTech;      
+        }
+        arrHse.push(((((acumHse / quantitySprints) * 100) / 1200)).toFixed(1));
+        arrTech.push(((((acumTech / quantitySprints) * 100) / 1800)).toFixed(1));
+      }
+    }
+    
+    
+    for (i = 0 ; i < students.length;i++) {
+      if (students[i].active == true) {
+        arrayName.push(students[i].name);
+        arrayPhoto.push(students[i].photo);
+      }
+    } 
+ 
+    // creando contenedores de información de acuerdo a la cantidad de alumnas
+    for (var j = 0; j < arrayName.length; j++) {
+      var textCell = document.createElement('div');
+      var containerName = document.createElement('div');
+      var nameStudent = document.createElement('p');
+      var specialization = document.createElement('p');
+      var boxTech = document.createElement('div');
+      var textTech = document.createElement('p');
+      var textDescriptionTech = document.createElement('p');
+      var boxHse = document.createElement('div');
+      var textHse = document.createElement('p');
+      var textDescriptionHse = document.createElement('p');
+      var english = document.createElement('div');
+      var image = document.createElement('img');
+      
+      textCell.classList.add('container-cell');
+      boxTech.classList.add('minibox-style');
+      boxHse.classList.add('minibox-style');
+      english.classList.add('minibox-style');
+      containerName.classList.add('container-name');
+      
+      image.setAttribute('src', arrayPhoto[j]);
+      nameStudent.textContent = arrayName[j];
+      specialization.textContent = 'Fronted Developer';
+      textTech.textContent = arrTech[j] + '%';
+      textDescriptionTech.textContent = 'Tech Skills';
+      textHse.textContent = arrHse[j] + '%';
+      textDescriptionHse.textContent = 'Life Skills';
+      english.innerHTML = '<p>Interm</p><p>English</p>';
+      
+      
+      // insertando info a los contenedores
+      boxTech.appendChild(textTech);
+      boxTech.appendChild(textDescriptionTech);
+      boxHse.appendChild(textHse);
+      boxHse.appendChild(textDescriptionHse);
+      containerName.appendChild(nameStudent);
+      containerName.appendChild(specialization);
+      textCell.appendChild(image);
+      textCell.appendChild(containerName);
+      textCell.appendChild(boxTech);
+      textCell.appendChild(boxHse);
+      textCell.appendChild(english);
+      // insertando al contenedor en html
+      containerStudents.appendChild(textCell);
+    }
   }
 });

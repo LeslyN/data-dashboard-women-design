@@ -55,16 +55,17 @@ img {
   margin-top: 0px;
 }
 
-.fotis {
+.image-user {
   margin-top: 0px;
   display: inline-block;
   position: relative;
-  height: 12vh;
-  width: 8vw;
+  bottom: 3px;
+  width: 25%;
   border-radius: 30px;
   opacity: 100;
+  
 }
-.fotis:hover {
+.image-user:hover {
   opacity: .70;
 }
 
@@ -118,9 +119,7 @@ img {
   vertical-align: top;
 }
 
-.box-medium-size .figures p {
-  font-size: 10px;
-}
+
 
 .box-size {
   border: 1px solid #ffc107;
@@ -175,8 +174,9 @@ nav {
 
 /*Tab*/
 #students {
-  width: 76vw;
+  width: 58vw;
   height: 20vh;
+  margin-left: 30%;
   /*border: 1px solid red;*/
   /*margin-left: 2vw;*/
 }
@@ -289,3 +289,73 @@ ul.acorh li a:hover {
 background: #ffd044;
 color: black;
 }
+
+/* Estilos de Filtro de Estudiantes*/
+
+  .container-cell {
+    height: 150px;
+    width: 745px;
+    float: left;
+    background-color: white;
+    margin-bottom: 2%;
+    border-radius: 10px;
+    box-shadow:1px 1px 3px #888888 ;
+
+  }
+
+  .container-cell img {
+    float: left;
+    width: 100px;
+    height: 130px;
+    margin: 10px;
+    
+  }
+
+  .container-name{
+    float: left;
+    margin: 10px;
+  }
+
+  .container-name :first-child {
+    font-family: 'Kanit', sans-serif;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 300px;
+  }
+
+  .container-name :last-child{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: .8;
+  }
+
+  .minibox-style{
+    background-color: #e1e1e1;
+    width: 80px;
+    height: 70px;
+    float: left;
+    margin: 10px;
+    text-align: center;
+    padding: 9px;
+    border-radius: 5px;
+  }
+
+  .minibox-style :last-child{
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .minibox-style :first-child{
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+  }
+/**/
+.number {
+  font-family: 'Kanit', sans-serif;
+  font-size: 30px;
+  text-align: center;
+}
+
+
+
