@@ -1,5 +1,7 @@
 window.addEventListener('load', function() {
-/* TABS */
+  var sedeGeneral;
+  var generation;
+  /* TABS */
   var tabs = document.querySelectorAll('.tab');
   var overviewSection = document.querySelector('#overview');
   var studentsSection = document.querySelector('#students');
@@ -90,8 +92,25 @@ window.addEventListener('load', function() {
     nps(branch, generation);
     jediMasterRating(branch, generation); // Lorena
     teacherRating(branch, generation); // Claudia
-    satisfaction(branch, generation); // Eleyne
-
+    satisfaction(branch, generation);
+    techSkills(branch, generation); // Eleyne
+    
+    var select = document.querySelector('.sprint');
+    var tech = document.querySelector('.tech');
+    select.addEventListener('change', function() {
+      var sprint1 = document.querySelector('.sprint-1-t');
+      var sprint2 = document.querySelector('.sprint-2-t');
+      var sprint3 = document.querySelector('.sprint-3-t');
+      if (sprint1.value == 'sprint-1-t') {
+        tech.textContent = techSkills(branch, generation)[0];
+      }
+      if (sprint2.value == 'sprint-2-t') {
+        tech.textContent = techSkills(branch, generation)[1];
+      }
+      if (sprint3.value == 'sprint-3-t') {
+        tech.textContent = techSkills(branch, generation)[2];
+      }
+    });
 
     studentFilter(branch, generation);
   };
@@ -305,6 +324,102 @@ window.addEventListener('load', function() {
      
     return prom;
   };
+
+  function techSkills(branch, generation) {
+    var students = data[branch][generation]['students'];
+    var totalTechArray = [];
+    var countTechSp1 = 0;
+    var countTechSp2 = 0;
+    var countTechSp3 = 0;
+    var countTechSp4 = 0;
+
+    for (var i = 0; i < students.length; i++) {
+      var quantitySprints = students[i].sprints.length;
+      if (students[i].active === true) {
+        for (var j = 0; j < quantitySprints; j++) {
+          if (students[i].sprints[j].number === 1) {
+            var techScoreSp1 = students[i].sprints[j].score.tech;
+            if (techScoreSp1 >= 1260) {
+              countTechSp1++;
+            }
+          } else if (students[i].sprints[j].number === 2) {
+            var techScoreSp2 = students[i].sprints[j].score.tech;
+            if (techScoreSp2 >= 1260) {
+              countTechSp2++;
+            }
+          } else if (students[i].sprints[j].number === 3) {
+            var techScoreSp3 = students[i].sprints[j].score.tech;
+            if (techScoreSp3 >= 1260) {
+              countTechSp3++;
+            }
+          } else if (students[i].sprints[j].number === 4) {
+            var techScoreSp4 = students[i].sprints[j].score.tech;
+            if (techScoreSp4 >= 1260) {
+              countTechSp4++;
+            }
+          }
+        }
+      }
+    }
+    totalTechArray.push(countTechSp1, countTechSp2, countTechSp3, countTechSp4);
+    return totalTechArray;
+  }
+
+  /* Total de estudiantes superan meta puntos hse - promedio y sprint */
+  function hseSkills(branch, generation, sprint) {
+    var students = data[branch][generation]['students'];
+    var totalStudentsActive = 0;
+    var totalStudentSprint = 0;
+    for (var i = 0; i < students.length; i++) {
+      var quantitySprints = students[i]['sprints'];
+      if (students[i].active) {
+        for (var j = 0; j < quantitySprints.length; j++) {
+          if (quantitySprints[j]['number'] === sprint && quantitySprints[j]['score']['hse'] >= 840) {
+            totalStudentSprint++;
+          }
+        }
+      }
+    }
+    return totalStudentSprint;
+  }
+  
+  function percentageHseSkills(branch, generation, sprint) {
+    var totalStudentActive = active(branch, generation);
+    var totalHseSprint = hseSkills(branch, generation, sprint);
+    var percentage = ((totalHseSprint / totalStudentActive) * 100).toFixed(1);
+    return percentage;
+  }
+
+  var sprintHseSkills = document.querySelector('.sprint-hse-skills');
+  sprintHseSkills.addEventListener('change', showHseSprint);
+  
+
+  function showHseSprint(event) {
+    var selectSprint = event.target.value;
+    switch (true) {
+    case selectSprint === '1':
+      document.querySelector('#skill-student').textContent = hseSkills(sedeGeneral, generation, 1);
+      percentageHseSkills(sedeGeneral, generation, 1);
+      break;
+    case selectSprint === '2':
+      document.querySelector('#skill-student').textContent = hseSkills(sedeGeneral, generation, 2);
+      percentageHseSkills(sedeGeneral, generation, 2);
+      break;
+    case selectSprint === '3':
+      document.querySelector('#skill-student').textContent = hseSkills(sedeGeneral, generation, 3);
+      percentageHseSkills(sedeGeneral, generation, 3);
+      break;
+    case selectSprint === '4':
+      document.querySelector('#skill-student').textContent = hseSkills(sedeGeneral, generation, 4);
+      percentageHseSkills(sedeGeneral, generation, 4);
+      break;
+    }
+    // sedeGeneral = '';
+    // generation = '';
+    // return selectSprint;
+  }
+
+
   /** FIn Eleyne */
   function studentFilter(branch, generation) {
     // Obtener la referencia del html

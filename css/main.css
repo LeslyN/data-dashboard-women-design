@@ -46,19 +46,19 @@ header {
   position: absolute;
 }
 
-
-
-img {
-  line-height: 2px;
-  margin-top: 0px;
+.box1 img {
+  width: 96%;
 }
+
+
+
 
 .image-user {
   margin-top: 0px;
   display: inline-block;
   position: relative;
-  bottom: 3px;
-  width: 25%;
+  top: 2px;
+  width: 21%;
   border-radius: 30px;
   opacity: 100;
 }
@@ -70,7 +70,7 @@ img {
   margin-top: 25px;
   margin-left: 0px;
   margin-bottom: 50px;
-  margin-right: 100px;
+  margin-right: 47px;
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;

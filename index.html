@@ -20,7 +20,7 @@
         <!--logo laboratoria-->
         <div class="box1"><img src="assets/images/logo-laboratoria.png" alt="logo-laboratoria"></div>
         <!--icono usuario, nombre de usuario-->
-        <div class="box2"><img class="image-user" src="assets/images/fotis.jpg" alt="fotis"><span class="saludo">Valeria <br> Schmidt</span></div>
+        <div class="box2"><img class="image-user" src="assets/images/fotis.jpg" alt="fotis"><span class="saludo">Valeria Schmidt</span></div>
     </header>
     
     <!--MENU DESPLEGABLE-->
@@ -240,11 +240,22 @@
           <!--Contenedor 2: 1 combo box con 3 sprints; 2 cajas (# y %)-->
           <section class="tech-skills box-size">
 
-            <h1 class="text-uppercase title">Tech Skills</h1>
+            <h1 class="text-uppercase title">Tech Skills
+              <!--Combo Box Sprints(3)-->
+            <select class="sprint" name="">
+              <option value="">Escoja sprint</option>
+              <option class ='sprint-1-t' value="sprint-1-t">Sprint - 1</option>
+              <option class ='sprint-2-t' value="sprint-2-t">Sprint - 2</option>
+              <option class ='sprint-3-t' value="sprint-3-t">Sprint - 3</option>
+              <option class ='sprint-4-t' value="sprint-4-t">Sprint - 4</option>
+            </select>
+
+
+            </h1>
 
             <!--box1-->
             <div class="figures" id="techSkillsTech">    
-              <p></p>
+              <p class="tech"></p>
                 <p class="text-uppercase"># students that meet the target</p>
             </div>
             <!--box2-->
@@ -253,13 +264,7 @@
               <p class="text-uppercase">% of total ()</p>
             </div>
 
-            <!--Combo Box Sprints(3)-->
-            <select class="sprint" name="">
-              <option value="">Escoja sprint</option>
-              <option value="sprint-1">Sprint - 1</option>
-              <option value="sprint-2">Sprint - 2</option>
-              <option value="sprint-3">Sprint - 3</option>
-            </select>
+            
 
             <canvas id='canvas-tech'></canvas>
           
@@ -267,29 +272,23 @@
 
           <!--Contenedor 3: 1 combo box con 3 sprints; 2 cajas (# y #)-->
           <section class="life-skills box-size">
-            <h1 class="text-uppercase title">Life Skills</h1>
-
-            <!--box1-->
-            <div class="figures" id="techSkillsLife">
-              <p></p>
-              <p class="text-uppercase">overall call average</p>
-            </div>
-            <!--box2-->
-            <div class="figures">
-              <p class="text-uppercase"># of students that meet the target</p>
-            </div>  
-
-            <!--Combo Box Sprints(3)-->
-            <select class="sprint" name="">
-              <option value="">Escoja sprint</option>
-              <option value="sprint-1">Sprint - 1</option>
-              <option value="sprint-2">Sprint - 2</option>
-              <option value="sprint-3">Sprint - 3</option>
-            </select>
-            
-            <canvas id='canvas-life'></canvas>
-                  
-          </section>
+              <h1 class="text-uppercase">Life Skills
+                <select class="sprint-hse-skills" name="">
+                  <option value="">Escoja sprint</option>
+                  <option value="1">Sprint - 1</option>
+                  <option value="2">Sprint - 2</option>
+                  <option value="3">Sprint - 3</option>
+                </select>
+              </h1>
+              <div class="figures" id="lifeSkillsLife">
+                <p class="skill-students" id="skill-student"></p>
+                <p class="text-uppercase">overall call average</p>
+              </div>
+              <div class="figures">
+                <p class="percentage-skill-students"></p>
+                <p class="text-uppercase"># of students that meet the target</p>
+              </div>
+            </section>
 
           <!--Contenedor 4: 3 contenedores secundarios (Student satisfaction, teacher rating, jedi master rating)-->
           <section class="container-one">
@@ -337,22 +336,8 @@
         <article id="students" class="display-none">
           
           <!--contenedor de estudiante-->
-          <div class="students-info">
-            <!--imagen de la alumna-->
-            <figure>
-              <img src="" alt="coder-picture">
-            </figure>
-            <!--nombre de la alumna-->
-            <h1 class="name">Nombre</h1>
-            <!--box1-->
-            <div class="figures">
-              <p class="text-uppercase">tech skills</p>
-            </div>
-            <!--box2-->
-            <div class="figures">
-              <p class="text-uppercase">life skills</p>
-            </div>
-          </div>
+           
+            <div id='container-students'></div>
 
         </article>
 
